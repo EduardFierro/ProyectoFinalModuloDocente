@@ -1,5 +1,8 @@
 package co.edu.unicundi.entity;
 
+import java.util.List;
+
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -10,6 +13,7 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.MapsId;
+import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
@@ -56,24 +60,68 @@ public class AulasVirtuales {
 	@JoinColumn(name = "materia_mate_id", nullable = false, foreignKey = @ForeignKey(name = "mate_id"))
 	private Materia materia;
 
+	@OneToMany(mappedBy ="aulasvirtuales", cascade=CascadeType.ALL, orphanRemoval = true, fetch = FetchType.LAZY)
+	@JsonIgnore
+	private List<AdjuntarEvidencia> evidencia ;
 	
 	public AulasVirtuales() {
 	}
 
-	public AulasVirtuales(Integer auvi_id, String nombre, Integer grupo, String semestre, String sede,
-			String registradopor, String fechacambio, Docente docente, Materia materia) {
+
+	public AulasVirtuales(Integer auvi_id,
+			String nombre,
+			Integer grupo, String semestre, String sede, String registradoPor, String fechaCambio, Docente docente,
+			Materia materia, List<AdjuntarEvidencia> evidencia) {
 		super();
 		this.auvi_id = auvi_id;
 		this.nombre = nombre;
 		this.grupo = grupo;
 		this.semestre = semestre;
 		this.sede = sede;
-		this.registradoPor = registradopor;
-		this.fechaCambio = fechacambio;
+		this.registradoPor = registradoPor;
+		this.fechaCambio = fechaCambio;
 		this.docente = docente;
 		this.materia = materia;
+		this.evidencia = evidencia;
+	}
 
-	}	
+
+
+	public String getRegistradoPor() {
+		return registradoPor;
+	}
+
+
+
+	public void setRegistradoPor(String registradoPor) {
+		this.registradoPor = registradoPor;
+	}
+
+
+
+	public String getFechaCambio() {
+		return fechaCambio;
+	}
+
+
+
+	public void setFechaCambio(String fechaCambio) {
+		this.fechaCambio = fechaCambio;
+	}
+
+
+
+	public List<AdjuntarEvidencia> getEvidencia() {
+		return evidencia;
+	}
+
+
+
+	public void setEvidencia(List<AdjuntarEvidencia> evidencia) {
+		this.evidencia = evidencia;
+	}
+
+
 
 	public Integer getAuvi_id() {
 		return auvi_id;

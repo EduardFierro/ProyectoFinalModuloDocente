@@ -1,5 +1,6 @@
 package co.edu.unicundi.repo;
 
+
 import co.edu.unicundi.entity.Imagen;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;

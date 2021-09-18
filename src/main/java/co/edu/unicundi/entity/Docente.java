@@ -104,7 +104,7 @@ public class Docente {
 		this.aulasvirtuales = (List<AulasVirtuales>) aulasvirtuales;
 	}
 	
-	@JsonBackReference 
+	
 	public Administrativo getAdministrativo() {
 		return administrativo;
 	}
